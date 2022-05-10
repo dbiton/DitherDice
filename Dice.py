@@ -23,9 +23,12 @@ class Dice(object):
     def get_closest_values(self, values: list):
         closest_face_ids = None
         closest_errors = None
+        closest_error_sum = float('inf')
         for face_ids in self.permutations():
-            errors = [abs(values[i] - self.face_values[face_ids[i]]) for i in range(self.degree)]
-            if closest_errors is None or sum(errors) < sum(closest_errors):
+            errors = [values[i] - self.face_values[face_ids[i]] for i in range(self.degree)]
+            error_sum = sum([abs(e) for e in errors])
+            if error_sum < closest_error_sum:
                 closest_errors = errors
                 closest_face_ids = face_ids
+                closest_error_sum = error_sum
         return closest_face_ids, closest_errors

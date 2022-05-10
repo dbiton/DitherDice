@@ -34,4 +34,4 @@ class Ditherer(object):
                 x_curr = x + offset[0]
                 y_curr = y + offset[1]
                 if size[0] > x_curr > -1 and size[1] > y_curr > -1:
-                    image_errors[x + offset[0], y + offset[1]] += error * weight
+                    image_errors[x_curr, y_curr] += error * weight
